@@ -3,7 +3,7 @@ import React, {Fragment, useState} from 'react'
 import { v4 as uuidv4 } from 'uuid';
 
 
-const Form = () => {
+const Form = ({createAppointment}) => {
 
     // Create appointment state
     const [appointment, SetAppointment] = useState({
@@ -46,7 +46,7 @@ const Form = () => {
         console.log(appointment)
 
         //create the appointment
-
+        createAppointment(appointment)
         // Restart form
         
     }
