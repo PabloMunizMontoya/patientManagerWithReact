@@ -21,11 +21,23 @@ const Form = () => {
         })
     }
 
+    //Extract the values
+    const { pet, owner, date, time, symptoms} = appointment 
+
+    //function that activates the submission of the form
+    const submitAppointment = (e) => {
+        e.preventDefault()
+
+        
+    }
+
     return ( 
         <Fragment>
             <h2>Create appointment</h2>
             
-            <form>
+            <form
+                onSubmit={submitAppointment}
+            >
                 <label>Pet Name</label>
                 <input
                     type='text'
@@ -33,6 +45,7 @@ const Form = () => {
                     className='u-full-width'
                     placeholder='Pet name'
                     onChange={updateState}
+                    value={pet}
                 />
                 <label>Owner's Name</label>
                 <input
@@ -41,6 +54,7 @@ const Form = () => {
                     className='u-full-width'
                     placeholder='Pet owner name'
                     onChange={updateState}
+                    value={owner}
                 />
                 <label>Date</label>
                 <input
@@ -48,6 +62,7 @@ const Form = () => {
                     name='date'
                     className='u-full-width'
                     onChange={updateState}
+                    value={date}
                 />
                 <label>Time</label>
                 <input
@@ -55,12 +70,14 @@ const Form = () => {
                     name='time'
                     className='u-full-width'
                     onChange={updateState}
+                    value={time}
                 />
                 <label>Symptoms</label>
                 <textarea
                     className='u-full-width'
                     name='symptoms'
                     onChange={updateState}
+                    value={symptoms}
                 ></textarea>
 
                 <button
