@@ -13,6 +13,9 @@ const Form = () => {
         symptoms: ''
     })
 
+    //Adding state from error message
+    const [ error, setError] = useState(false)
+
     //function that is executed when th user writhe an input
     const updateState = e => {
         SetAppointment({
@@ -27,7 +30,18 @@ const Form = () => {
     //function that activates the submission of the form
     const submitAppointment = (e) => {
         e.preventDefault()
+        
+        //validate
+        if(pet.trim() === '' || owner.trim() === '' || date.trim() === '' || time.trim() === '' || symptoms.trim() === '' ) {
+            setError(true)
+            return;
+        }
 
+        //Assign ID
+
+        //create the appointment
+
+        // Restart form
         
     }
 
@@ -35,6 +49,8 @@ const Form = () => {
         <Fragment>
             <h2>Create appointment</h2>
             
+            { error ? <p className='alerta-error'> All fields are required </p> : null}
+
             <form
                 onSubmit={submitAppointment}
             >
