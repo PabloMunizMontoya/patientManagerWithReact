@@ -45,10 +45,17 @@ const Form = ({createAppointment}) => {
         appointment.id = uuidv4()
         console.log(appointment)
 
-        //create the appointment
+        //create the appointment this come from app.js (props)
         createAppointment(appointment)
+
         // Restart form
-        
+        SetAppointment({
+        pet: '',
+        owner: '',
+        date: ',',
+        time: '',
+        symptoms: ''
+        })
     }
 
     return ( 
