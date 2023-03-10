@@ -1,5 +1,6 @@
 
 import React, {Fragment, useState} from 'react'
+import { v4 as uuidv4 } from 'uuid';
 
 
 const Form = () => {
@@ -35,9 +36,14 @@ const Form = () => {
         if(pet.trim() === '' || owner.trim() === '' || date.trim() === '' || time.trim() === '' || symptoms.trim() === '' ) {
             setError(true)
             return;
+            //Delete error message
+        } else {
+            setError(false)
         }
-
+        
         //Assign ID
+        appointment.id = uuidv4()
+        console.log(appointment)
 
         //create the appointment
 
