@@ -1,11 +1,27 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import Form from './components/Form';
 import Appointment from './components/Appointment'
+import PropTypes from 'prop-types'
 
 function App() {
 
+  //appointments on local storage
+  let initialAppointments = JSON.parse(localStorage.getItem('appointments'))
+  if(!initialAppointments) {
+    initialAppointments = []
+  }
   //Create array of appointments
-  const [appointments, SetAppointments] = useState([])
+  const [appointments, SetAppointments] = useState(initialAppointments)
+
+  //useEffect for realize operation when the state change
+  useEffect( () => {
+    let initialAppointments = JSON.parse(localStorage.getItem('appointments'))
+    if (initialAppointments) {
+      localStorage.setItem('appointments', JSON.stringify(appointments))
+    } else {
+      localStorage.setItem('appointments', JSON.stringify([]))
+    }
+  }, [appointments] )
 
   // function that takes the current appointments and adds the new ones
   const createAppointment = appointment => {
@@ -22,6 +38,8 @@ function App() {
   }
 
   // conditional message
+  const tittle = appointments.length === 0 ? 'no appointments' : 'Manage your appointments'
+
   return (
     <Fragment>
       <h1>Patient Manager</h1>
@@ -33,7 +51,7 @@ function App() {
             />
           </div>
           <div className='one-half column'>
-            <h2>Manage your appointments </h2>
+            <h2>{tittle}</h2>
             {appointments.map(appointment => (
               <Appointment
                 key={appointment.id}
@@ -48,5 +66,10 @@ function App() {
 
   );
 }
+
+  Form.propTypes = {
+    createAppointment: PropTypes.func.isRequired
+  };
+  
 
 export default App;
