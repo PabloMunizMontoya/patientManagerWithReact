@@ -14,6 +14,14 @@ function App() {
       appointment
     ])
   }
+
+  //function that eliminate a appointment by id
+  const deleteAppointments = id => {
+    const newAppointments = appointments.filter(appointment => appointment.id !== id  )
+    SetAppointments(newAppointments)
+  }
+
+  // conditional message
   return (
     <Fragment>
       <h1>Patient Manager</h1>
@@ -30,6 +38,7 @@ function App() {
               <Appointment
                 key={appointment.id}
                 appointment={appointment}
+                deleteAppointments={deleteAppointments}
               />
             ))}
           </div>
